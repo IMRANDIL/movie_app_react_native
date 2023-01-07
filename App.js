@@ -9,7 +9,6 @@ const App = () => {
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
-        paddingTop: 0,
       }}>
       <Home />
     </View>
