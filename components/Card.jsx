@@ -2,6 +2,7 @@ import {height} from 'deprecated-react-native-prop-types/DeprecatedImagePropType
 import React from 'react';
 import {TouchableOpacity, StyleSheet, Text, Image} from 'react-native';
 const PlaceHolderImg = require('../assets/images/No-Image-Placeholder.svg.png');
+
 class Card extends React.PureComponent {
   render() {
     const {item} = this.props;
