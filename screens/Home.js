@@ -87,7 +87,7 @@ const Home = () => {
               <SliderBox
                 images={movieImages}
                 dotStyle={styles.sliderStyle}
-                sliderBoxHeight={diamensions.height / 1.5}
+                sliderBoxHeight={diamensions.height / 1.4}
                 autoPlay={true}
                 circleLoop={true}
               />
