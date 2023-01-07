@@ -66,36 +66,48 @@ const Home = () => {
   return (
     <>
       <ScrollView>
-        <View style={styles.sliderContainer}>
-          <SliderBox
-            images={movieImages}
-            dotStyle={styles.sliderStyle}
-            sliderBoxHeight={diamensions.height / 1.5}
-            autoPlay={true}
-            circleLoop={true}
-          />
-        </View>
+        {movieImages && (
+          <View style={styles.sliderContainer}>
+            <SliderBox
+              images={movieImages}
+              dotStyle={styles.sliderStyle}
+              sliderBoxHeight={diamensions.height / 1.5}
+              autoPlay={true}
+              circleLoop={true}
+            />
+          </View>
+        )}
 
-        <View style={styles.carousel}>
-          <List title={'Popular Movies'} content={popularMovies}></List>
-        </View>
-        <View style={styles.carousel}>
-          <List title={'Popular TV Shows'} content={popularTv}></List>
-        </View>
-        <View style={styles.carousel}>
-          <List title={'Popular Family Movies'} content={familyMovies}></List>
-        </View>
-        <View style={styles.carousel}>
-          <List
-            title={'Popular Animation Movies'}
-            content={animatedMovies}></List>
-        </View>
+        {popularMovies && (
+          <View style={styles.carousel}>
+            <List title={'Popular Movies'} content={popularMovies}></List>
+          </View>
+        )}
+        {popularTv && (
+          <View style={styles.carousel}>
+            <List title={'Popular TV Shows'} content={popularTv}></List>
+          </View>
+        )}
+        {familyMovies && (
+          <View style={styles.carousel}>
+            <List title={'Popular Family Movies'} content={familyMovies}></List>
+          </View>
+        )}
+        {animatedMovies && (
+          <View style={styles.carousel}>
+            <List
+              title={'Popular Animation Movies'}
+              content={animatedMovies}></List>
+          </View>
+        )}
 
-        <View style={styles.carousel}>
-          <List
-            title={'Popular Documentary Movies'}
-            content={documentaryMovies}></List>
-        </View>
+        {documentaryMovies && (
+          <View style={styles.carousel}>
+            <List
+              title={'Popular Documentary Movies'}
+              content={documentaryMovies}></List>
+          </View>
+        )}
       </ScrollView>
     </>
   );
