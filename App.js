@@ -1,14 +1,16 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {SafeAreaView, Text, View} from 'react-native';
 import Home from './screens/Home';
 
 const App = () => {
   return (
     <View
       style={{
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        flex: 1,
       }}>
       <Home />
     </View>

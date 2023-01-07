@@ -38,14 +38,14 @@ const Home = () => {
         <SliderBox
           images={movieImages}
           dotStyle={styles.sliderStyle}
-          sliderBoxHeight={diamensions.height / 1.5}
+          sliderBoxHeight={diamensions.height / 1}
           autoPlay={true}
           circleLoop={true}
         />
       </View>
 
       <View style={styles.carousel}>
-        <List title={'z'} content={popularMovies}></List>
+        <List title={'Love'} content={popularMovies}></List>
       </View>
     </>
   );
