@@ -1,5 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Dimensions, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  ActivityIndicator,
+  View,
+  Dimensions,
+  ScrollView,
+} from 'react-native';
 import {
   getAnimatedMovie,
   getDocumentaryMovie,
@@ -20,8 +26,10 @@ const Home = () => {
   const [familyMovies, setFamilyMovies] = useState([]);
   const [animatedMovies, setAnimatedMovies] = useState([]);
   const [documentaryMovies, setDocumentaryMovies] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   const getAllData = () => {
+    setLoaded(true);
     return Promise.all([
       getUpcomingMovies(),
       getPopularTV(),
@@ -33,6 +41,7 @@ const Home = () => {
   };
 
   useEffect(() => {
+    setLoaded(true);
     getAllData()
       .then(
         ([
@@ -58,57 +67,67 @@ const Home = () => {
           setFamilyMovies(familyMovies);
           setAnimatedMovies(animatedMovies);
           setDocumentaryMovies(DocumentedMovies);
+          setLoaded(false);
         },
       )
-      .catch(error => console.log(error));
+      .catch(error => {
+        setLoaded(false);
+        console.log(error);
+      });
   }, []);
 
   return (
     <>
-      <ScrollView>
-        {movieImages && (
-          <View style={styles.sliderContainer}>
-            <SliderBox
-              images={movieImages}
-              dotStyle={styles.sliderStyle}
-              sliderBoxHeight={diamensions.height / 1.5}
-              autoPlay={true}
-              circleLoop={true}
-            />
-          </View>
-        )}
+      {loaded ? (
+        <ActivityIndicator />
+      ) : (
+        <ScrollView>
+          {movieImages && (
+            <View style={styles.sliderContainer}>
+              <SliderBox
+                images={movieImages}
+                dotStyle={styles.sliderStyle}
+                sliderBoxHeight={diamensions.height / 1.5}
+                autoPlay={true}
+                circleLoop={true}
+              />
+            </View>
+          )}
 
-        {popularMovies && (
-          <View style={styles.carousel}>
-            <List title={'Popular Movies'} content={popularMovies}></List>
-          </View>
-        )}
-        {popularTv && (
-          <View style={styles.carousel}>
-            <List title={'Popular TV Shows'} content={popularTv}></List>
-          </View>
-        )}
-        {familyMovies && (
-          <View style={styles.carousel}>
-            <List title={'Popular Family Movies'} content={familyMovies}></List>
-          </View>
-        )}
-        {animatedMovies && (
-          <View style={styles.carousel}>
-            <List
-              title={'Popular Animation Movies'}
-              content={animatedMovies}></List>
-          </View>
-        )}
+          {popularMovies && (
+            <View style={styles.carousel}>
+              <List title={'Popular Movies'} content={popularMovies}></List>
+            </View>
+          )}
+          {popularTv && (
+            <View style={styles.carousel}>
+              <List title={'Popular TV Shows'} content={popularTv}></List>
+            </View>
+          )}
+          {familyMovies && (
+            <View style={styles.carousel}>
+              <List
+                title={'Popular Family Movies'}
+                content={familyMovies}></List>
+            </View>
+          )}
+          {animatedMovies && (
+            <View style={styles.carousel}>
+              <List
+                title={'Popular Animation Movies'}
+                content={animatedMovies}></List>
+            </View>
+          )}
 
-        {documentaryMovies && (
-          <View style={styles.carousel}>
-            <List
-              title={'Popular Documentary Movies'}
-              content={documentaryMovies}></List>
-          </View>
-        )}
-      </ScrollView>
+          {documentaryMovies && (
+            <View style={styles.carousel}>
+              <List
+                title={'Popular Documentary Movies'}
+                content={documentaryMovies}></List>
+            </View>
+          )}
+        </ScrollView>
+      )}
     </>
   );
 };
