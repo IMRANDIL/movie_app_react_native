@@ -1,12 +1,12 @@
 import React from 'react';
-import {View, FlatList, Text} from 'react-native';
+import {View, FlatList, Text, StyleSheet} from 'react-native';
 class List extends React.PureComponent {
   render() {
     const {title, content} = this.props;
     return (
-      <View>
+      <View style={styles.list}>
         <View>
-          <Text>{title}</Text>
+          <Text style={styles.text}>{title}</Text>
         </View>
         <View>
           <FlatList
@@ -19,5 +19,16 @@ class List extends React.PureComponent {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    paddingBottom: 20,
+  },
+  list: {
+    marginTop: 25,
+  },
+});
 
 export default List;

@@ -45,7 +45,7 @@ const Home = () => {
       </View>
 
       <View style={styles.carousel}>
-        <List title={'love'} content={popularMovies}></List>
+        <List title={'z'} content={popularMovies}></List>
       </View>
     </>
   );
