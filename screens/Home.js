@@ -28,7 +28,7 @@ const Home = () => {
   const [animatedMovies, setAnimatedMovies] = useState([]);
   const [documentaryMovies, setDocumentaryMovies] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(true);
 
   const getAllData = () => {
     setLoaded(true);
@@ -131,7 +131,10 @@ const Home = () => {
           )}
         </ScrollView>
       ) : (
-        <Error errorText1="something wrong" />
+        <Error
+          errorText1="Ooops! Something went wrong"
+          errorText2="Make sure you are online then please restart the app"
+        />
       )}
     </>
   );
