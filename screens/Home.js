@@ -20,50 +20,46 @@ const Home = () => {
   const [familyMovies, setFamilyMovies] = useState([]);
   const [animatedMovies, setAnimatedMovies] = useState([]);
   const [documentaryMovies, setDocumentaryMovies] = useState([]);
+
+  const getAllData = () => {
+    return Promise.all([
+      getUpcomingMovies(),
+      getPopularTV(),
+      getAnimatedMovie(),
+      getDocumentaryMovie(),
+      getFamilyMovie(),
+      getPopularMovies(),
+    ]);
+  };
+
   useEffect(() => {
-    getUpcomingMovies()
-      .then(movies => {
-        const imageArray = [];
+    getAllData()
+      .then(
+        ([
+          upcomingMovies,
+          popularTvs,
+          animatedMovies,
+          DocumentedMovies,
+          familyMovies,
+          popularMovies,
+        ]) => {
+          const imageArray = [];
 
-        movies &&
-          movies.forEach(item => {
-            imageArray.push(
-              `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-            );
-          });
+          upcomingMovies &&
+            upcomingMovies.forEach(item => {
+              imageArray.push(
+                `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+              );
+            });
 
-        setMovieImages(imageArray);
-      })
-      .catch(error => console.log(error));
-
-    getPopularMovies()
-      .then(movies => {
-        setPopularMovies(movies);
-      })
-      .catch(error => console.log(error));
-
-    getPopularTV()
-      .then(Tvs => {
-        setPopularTv(Tvs);
-      })
-      .catch(error => console.log(error));
-
-    getFamilyMovie()
-      .then(movies => {
-        setFamilyMovies(movies);
-      })
-      .catch(error => console.log(error));
-
-    getAnimatedMovie()
-      .then(movies => {
-        setAnimatedMovies(movies);
-      })
-      .catch(error => console.log(error));
-
-    getDocumentaryMovie()
-      .then(movies => {
-        setDocumentaryMovies(movies);
-      })
+          setMovieImages(imageArray);
+          setPopularMovies(popularMovies);
+          setPopularTv(popularTvs);
+          setFamilyMovies(familyMovies);
+          setAnimatedMovies(animatedMovies);
+          setDocumentaryMovies(DocumentedMovies);
+        },
+      )
       .catch(error => console.log(error));
   }, []);
 
