@@ -55,3 +55,14 @@ export const getAnimatedMovie = async () => {
     console.log(error);
   }
 };
+
+export const getDocumentaryMovie = async () => {
+  try {
+    const response = await axios.get(
+      `${apiUrl}/discover/movie?api_key=${apiKey}&with_genres=99`,
+    );
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+  }
+};
