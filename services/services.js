@@ -5,7 +5,9 @@ const apiKey = 'a1c48b8b61402cdd2902b7bf0b18ec16';
 
 export const getPopularMovies = async () => {
   try {
-    const response = await axios.get(`${apiUrl}/movie/popular?${apiKey}`);
+    const response = await axios.get(
+      `${apiUrl}/movie/popular?api_key=${apiKey}`,
+    );
     return response.data.results;
   } catch (error) {
     console.log(error);

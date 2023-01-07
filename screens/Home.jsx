@@ -1,35 +1,72 @@
 import React, {useState, useEffect} from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View, Dimensions, FlatList, Text} from 'react-native';
 import {getPopularMovies, getUpcomingMovies} from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
 
+const diamensions = Dimensions.get('screen');
+
 const Home = () => {
   const [movieImages, setMovieImages] = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]);
   useEffect(() => {
     getUpcomingMovies()
-      .then(movie => {
+      .then(movies => {
         const imageArray = [];
-        movie &&
-          movie.forEach(item => {
-            imageArray.push(item.poster_path);
+
+        movies &&
+          movies.forEach(item => {
+            imageArray.push(
+              `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+            );
           });
 
         setMovieImages(imageArray);
-        console.log(movieImages);
+      })
+      .catch(error => console.log(error));
+
+    getPopularMovies()
+      .then(movies => {
+        setPopularMovies(movies);
       })
       .catch(error => console.log(error));
   }, []);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <SliderBox images={movieImages} />
-    </View>
+    <>
+      <View style={styles.sliderContainer}>
+        <SliderBox
+          images={movieImages}
+          dotStyle={styles.sliderStyle}
+          sliderBoxHeight={diamensions.height / 1.5}
+          autoPlay={true}
+          circleLoop={true}
+        />
+      </View>
+      <View style={styles.carousel}>
+        <FlatList
+          data={popularMovies}
+          horizontal={true}
+          renderItem={({item}) => <Text>{item.title}</Text>}
+        />
+      </View>
+    </>
   );
 };
+
+const styles = StyleSheet.create({
+  sliderContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  sliderStyle: {
+    height: 0,
+  },
+  carousel: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default Home;
