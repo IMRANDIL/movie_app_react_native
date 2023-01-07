@@ -59,6 +59,9 @@ const Home = () => {
         <View style={styles.carousel}>
           <List title={'Popular Movies'} content={popularMovies}></List>
         </View>
+        <View style={styles.carousel}>
+          <List title={'Popular TVs'} content={popularTv}></List>
+        </View>
       </ScrollView>
     </>
   );
