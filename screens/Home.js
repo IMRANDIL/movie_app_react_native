@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Dimensions, ScrollView} from 'react-native';
-import {getPopularMovies, getUpcomingMovies} from '../services/services';
+import {
+  getPopularMovies,
+  getPopularTV,
+  getUpcomingMovies,
+} from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
 import List from '../components/List';
 
@@ -9,6 +13,7 @@ const diamensions = Dimensions.get('screen');
 const Home = () => {
   const [movieImages, setMovieImages] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
+  const [popularTv, setPopularTv] = useState([]);
   useEffect(() => {
     getUpcomingMovies()
       .then(movies => {
@@ -28,6 +33,12 @@ const Home = () => {
     getPopularMovies()
       .then(movies => {
         setPopularMovies(movies);
+      })
+      .catch(error => console.log(error));
+
+    getPopularTV()
+      .then(Tvs => {
+        setPopularTv(Tvs);
       })
       .catch(error => console.log(error));
   }, []);

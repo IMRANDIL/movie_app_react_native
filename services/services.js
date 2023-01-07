@@ -27,7 +27,7 @@ export const getUpcomingMovies = async () => {
 
 export const getPopularTV = async () => {
   try {
-    const response = await axios.get(`${apiUrl}/tv/popular?${apiKey}`);
+    const response = await axios.get(`${apiUrl}/tv/popular?api_key=${apiKey}`);
     return response.data.results;
   } catch (error) {
     console.log(error);
