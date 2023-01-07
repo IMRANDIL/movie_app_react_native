@@ -79,7 +79,7 @@ const Home = () => {
   return (
     <>
       {loaded ? (
-        <ActivityIndicator />
+        <ActivityIndicator size={'large'} color="#0000ff" />
       ) : (
         <ScrollView>
           {movieImages && (
