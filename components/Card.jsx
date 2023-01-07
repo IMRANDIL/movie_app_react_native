@@ -1,5 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet, Text, Image} from 'react-native';
+const PlaceHolderImg = require('../assets/images/No-Image-Placeholder.svg.png');
 class Card extends React.PureComponent {
   render() {
     const {item} = this.props;
@@ -7,9 +8,14 @@ class Card extends React.PureComponent {
       <TouchableOpacity style={styles.container}>
         <Image
           style={styles.image}
-          source={{uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`}}
+          resizeMode="cover"
+          source={
+            item.poster_path
+              ? {uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`}
+              : PlaceHolderImg
+          }
         />
-        <Text>{item.title}</Text>
+        {!item.poster_path && <Text>{item.title}</Text>}
       </TouchableOpacity>
     );
   }
