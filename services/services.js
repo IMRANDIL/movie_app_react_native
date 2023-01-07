@@ -44,3 +44,14 @@ export const getFamilyMovie = async () => {
     console.log(error);
   }
 };
+
+export const getAnimatedMovie = async () => {
+  try {
+    const response = await axios.get(
+      `${apiUrl}/discover/movie?api_key=${apiKey}&with_genres=16`,
+    );
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Dimensions, ScrollView} from 'react-native';
 import {
+  getAnimatedMovie,
   getFamilyMovie,
   getPopularMovies,
   getPopularTV,
@@ -16,6 +17,7 @@ const Home = () => {
   const [popularMovies, setPopularMovies] = useState([]);
   const [popularTv, setPopularTv] = useState([]);
   const [familyMovies, setFamilyMovies] = useState([]);
+  const [animatedMovies, setAnimatedMovies] = useState([]);
   useEffect(() => {
     getUpcomingMovies()
       .then(movies => {
@@ -49,6 +51,12 @@ const Home = () => {
         setFamilyMovies(movies);
       })
       .catch(error => console.log(error));
+
+    getAnimatedMovie()
+      .then(movies => {
+        setAnimatedMovies(movies);
+      })
+      .catch(error => console.log(error));
   }, []);
 
   return (
@@ -72,6 +80,11 @@ const Home = () => {
         </View>
         <View style={styles.carousel}>
           <List title={'Popular Family Movies'} content={familyMovies}></List>
+        </View>
+        <View style={styles.carousel}>
+          <List
+            title={'Popular Animation Movies'}
+            content={animatedMovies}></List>
         </View>
       </ScrollView>
     </>
