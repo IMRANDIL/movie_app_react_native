@@ -133,7 +133,7 @@ const Home = () => {
       ) : (
         <Error
           errorText1="Ooops! Something went wrong"
-          errorText2="Make sure you are online then please restart the app"
+          errorText2="Please make sure you are online then restart the app"
         />
       )}
     </>
