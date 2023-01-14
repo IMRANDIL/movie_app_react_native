@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import {getMovieDetails} from '../services/services';
+import {Rating} from 'react-native-ratings';
 const PlaceHolderImg = require('../assets/images/No-Image-Placeholder.svg.png');
 
 const height = Dimensions.get('screen').height;
@@ -62,6 +63,7 @@ const Details = ({route}) => {
                 })}
               </View>
             )}
+            <Rating type="star" ratingCount={5} imageSize={30} showRating />
           </View>
         </ScrollView>
       )}
@@ -89,8 +91,11 @@ const styles = StyleSheet.create({
   },
   generesContainer: {
     flexDirection: 'row',
+    alignContent: 'center',
+    marginTop: 20,
   },
   genreText: {
     paddingHorizontal: 5,
+    fontWeight: 'bold',
   },
 });
