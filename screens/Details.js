@@ -63,7 +63,15 @@ const Details = ({route}) => {
                 })}
               </View>
             )}
-            <Rating type="star" ratingCount={5} imageSize={30} showRating />
+            <Rating
+              type="custom"
+              startingValue={movieDetails.vote_average / 2}
+              ratingCount={5}
+              imageSize={30}
+              readonly={true}
+              ratingColor="black"
+              style={styles.star}
+            />
           </View>
         </ScrollView>
       )}
@@ -97,5 +105,8 @@ const styles = StyleSheet.create({
   genreText: {
     paddingHorizontal: 5,
     fontWeight: 'bold',
+  },
+  star: {
+    marginVertical: 3,
   },
 });
