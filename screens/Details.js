@@ -91,6 +91,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   genreText: {
-    padding: 5,
+    paddingHorizontal: 5,
   },
 });
