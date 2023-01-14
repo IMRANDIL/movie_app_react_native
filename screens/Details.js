@@ -5,9 +5,12 @@ import {
   ScrollView,
   Image,
   StyleSheet,
+  Dimensions,
 } from 'react-native';
 import {getMovieDetails} from '../services/services';
 const PlaceHolderImg = require('../assets/images/No-Image-Placeholder.svg.png');
+
+const height = Dimensions.get('screen').height;
 
 const Details = ({route}) => {
   const {movieDetail} = route.params;
@@ -37,7 +40,7 @@ const Details = ({route}) => {
         <ScrollView>
           <Image
             style={styles.image}
-            resizeMode="contain"
+            resizeMode="cover"
             source={
               details.poster_path
                 ? {uri: `https://image.tmdb.org/t/p/w500${details.poster_path}`}
@@ -54,8 +57,7 @@ export default Details;
 
 const styles = StyleSheet.create({
   image: {
-    height: 300,
-    width: '100%',
-    borderRadius: 20,
+    height: height / 2,
+    borderRadius: 5,
   },
 });
