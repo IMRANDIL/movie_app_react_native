@@ -7,6 +7,8 @@ import {
   StyleSheet,
   Dimensions,
   View,
+  Modal,
+  Pressable,
 } from 'react-native';
 import {getMovieDetails} from '../services/services';
 import {Rating} from 'react-native-ratings';
@@ -19,6 +21,7 @@ const Details = ({route}) => {
   const {movieId} = route.params;
   const [movieDetails, setMovieDetails] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     getMovieDetails(movieId)
@@ -33,56 +36,67 @@ const Details = ({route}) => {
       });
   }, [movieId]);
 
+  const videoShown = () => {
+    setModalVisible(!modalVisible);
+  };
+
   return (
     <>
       {!movieId && isLoading && (
         <ActivityIndicator size="large" color="#0000ff" />
       )}
       {movieDetails && (
-        <ScrollView>
-          <Image
-            style={styles.image}
-            resizeMode="stretch"
-            source={
-              movieDetails.poster_path
-                ? {
-                    uri: `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`,
-                  }
-                : PlaceHolderImg
-            }
-          />
-          <View style={styles.container}>
-            <View style={styles.playButton}>
-              <PlayButton />
-            </View>
-            <Text style={styles.movieTitle}>{movieDetails.title}</Text>
-            {movieDetails.genres && (
-              <View style={styles.generesContainer}>
-                {movieDetails.genres.map((genre, i) => {
-                  return (
-                    <Text key={i} style={styles.genreText}>
-                      {genre.name}
-                    </Text>
-                  );
-                })}
-              </View>
-            )}
-            <Rating
-              type="custom"
-              startingValue={movieDetails.vote_average / 2}
-              ratingCount={5}
-              imageSize={25}
-              readonly={true}
-              ratingColor="gold"
-              style={styles.star}
+        <View>
+          <ScrollView>
+            <Image
+              style={styles.image}
+              resizeMode="stretch"
+              source={
+                movieDetails.poster_path
+                  ? {
+                      uri: `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`,
+                    }
+                  : PlaceHolderImg
+              }
             />
-            <Text style={styles.overview}>{movieDetails.overview}</Text>
-            <Text style={styles.releasedate}>{`Release date: ${dateFormat(
-              movieDetails.release_date,
-              'mmmm dS, yyyy',
-            )}`}</Text>
-          </View>
-        </ScrollView>
+            <View style={styles.container}>
+              <View style={styles.playButton}>
+                <PlayButton handlePress={videoShown} />
+              </View>
+              <Text style={styles.movieTitle}>{movieDetails.title}</Text>
+              {movieDetails.genres && (
+                <View style={styles.generesContainer}>
+                  {movieDetails.genres.map((genre, i) => {
+                    return (
+                      <Text key={i} style={styles.genreText}>
+                        {genre.name}
+                      </Text>
+                    );
+                  })}
+                </View>
+              )}
+              <Rating
+                type="custom"
+                startingValue={movieDetails.vote_average / 2}
+                ratingCount={5}
+                imageSize={25}
+                readonly={true}
+                ratingColor="gold"
+                style={styles.star}
+              />
+              <Text style={styles.overview}>{movieDetails.overview}</Text>
+              <Text style={styles.releasedate}>{`Release date: ${dateFormat(
+                movieDetails.release_date,
+                'mmmm dS, yyyy',
+              )}`}</Text>
+            </View>
+          </ScrollView>
+          <Modal animationType="slide" visible={modalVisible}>
+            <Pressable onPress={() => videoShown()}>
+              <Text>Close</Text>
+            </Pressable>
+          </Modal>
+        </View>
       )}
     </>
   );

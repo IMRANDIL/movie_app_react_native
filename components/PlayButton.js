@@ -3,9 +3,10 @@ import {Pressable, StyleSheet, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 class PlayButton extends React.PureComponent {
   render() {
+    const {handlePress} = this.props;
     return (
       <>
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={() => handlePress()}>
           <Icon name={'caret-forward-outline'} size={30} color={'white'} />
         </Pressable>
       </>
