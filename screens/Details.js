@@ -97,9 +97,7 @@ const Details = ({route, navigation}) => {
               <VideoPlayer
                 onBack={() => videoShown()}
                 navigator={navigation}
-                source={{
-                  uri: 'https://www.youtube.com/watch?v=7OGjbjGmOh0',
-                }}
+                source={{uri: 'https://vjs.zencdn.net/v/oceans.mp4'}}
               />
 
               {/* <Pressable onPress={() => videoShown()}>
