@@ -92,9 +92,11 @@ const Details = ({route}) => {
             </View>
           </ScrollView>
           <Modal animationType="slide" visible={modalVisible}>
-            <Pressable onPress={() => videoShown()}>
-              <Text>Close</Text>
-            </Pressable>
+            <View style={styles.videoModal}>
+              <Pressable onPress={() => videoShown()}>
+                <Text>Close</Text>
+              </Pressable>
+            </View>
           </Modal>
         </View>
       )}
@@ -143,5 +145,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -25,
     right: 20,
+  },
+  videoModal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
