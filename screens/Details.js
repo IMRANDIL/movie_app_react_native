@@ -1,10 +1,11 @@
 import React from 'react';
 import {Text} from 'react-native';
 
-const Details = () => {
+const Details = ({route}) => {
+  const {movieDetail} = route.params;
   return (
     <>
-      <Text>{'Movie Details'}</Text>
+      <Text>{movieDetail.title}</Text>
     </>
   );
 };
