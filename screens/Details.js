@@ -6,6 +6,7 @@ import {
   Image,
   StyleSheet,
   Dimensions,
+  View,
 } from 'react-native';
 import {getMovieDetails} from '../services/services';
 const PlaceHolderImg = require('../assets/images/No-Image-Placeholder.svg.png');
@@ -46,6 +47,9 @@ const Details = ({route}) => {
                 : PlaceHolderImg
             }
           />
+          <View style={styles.container}>
+            <Text style={styles.movieTitle}>{details.title}</Text>
+          </View>
         </ScrollView>
       )}
     </>
@@ -58,5 +62,16 @@ const styles = StyleSheet.create({
   image: {
     height: height / 2,
     borderRadius: 5,
+  },
+  movieTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
