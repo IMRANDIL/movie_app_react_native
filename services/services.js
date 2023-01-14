@@ -66,3 +66,12 @@ export const getDocumentaryMovie = async () => {
     console.log(error);
   }
 };
+
+export const getMovieDetails = async id => {
+  try {
+    const response = await axios.get(`${apiUrl}/movie?api_key=${apiKey}`);
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+  }
+};
