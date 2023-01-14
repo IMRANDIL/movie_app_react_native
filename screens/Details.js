@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   },
   playButton: {
     position: 'absolute',
-    top: -30,
+    top: -25,
     right: 20,
   },
 });
