@@ -67,11 +67,16 @@ const Details = ({route}) => {
               type="custom"
               startingValue={movieDetails.vote_average / 2}
               ratingCount={5}
-              imageSize={30}
+              imageSize={25}
               readonly={true}
-              ratingColor="black"
+              ratingColor="gold"
               style={styles.star}
             />
+            <Text style={styles.overview}>{movieDetails.overview}</Text>
+            <Text
+              style={
+                styles.releasedate
+              }>{`Release date: ${movieDetails.release_date}`}</Text>
           </View>
         </ScrollView>
       )}
@@ -107,6 +112,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   star: {
-    marginVertical: 3,
+    marginVertical: 5,
+  },
+  overview: {
+    padding: 15,
+  },
+  releasedate: {
+    fontWeight: 'bold',
+    marginBottom: 15,
   },
 });
