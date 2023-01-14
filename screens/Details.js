@@ -52,9 +52,13 @@ const Details = ({route}) => {
           <View style={styles.container}>
             <Text style={styles.movieTitle}>{movieDetails.title}</Text>
             {movieDetails.genres && (
-              <View>
+              <View style={styles.generesContainer}>
                 {movieDetails.genres.map((genre, i) => {
-                  return <Text key={i}>{genre.name}</Text>;
+                  return (
+                    <Text key={i} style={styles.genreText}>
+                      {genre.name}
+                    </Text>
+                  );
                 })}
               </View>
             )}
@@ -82,5 +86,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  generesContainer: {
+    flexDirection: 'row',
+  },
+  genreText: {
+    padding: 5,
   },
 });
