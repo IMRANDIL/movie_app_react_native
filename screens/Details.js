@@ -15,14 +15,14 @@ const height = Dimensions.get('screen').height;
 
 const Details = ({route}) => {
   const {movieId} = route.params;
-  const [details, setDetails] = useState();
+  const [movieDetails, setMovieDetails] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getMovieDetails(movieId)
       .then(data => {
         setIsLoading(true);
-        setDetails(data);
+        setMovieDetails(data);
         setIsLoading(false);
       })
       .catch(err => {
@@ -36,22 +36,24 @@ const Details = ({route}) => {
       {!movieId && isLoading && (
         <ActivityIndicator size="large" color="#0000ff" />
       )}
-      {details && (
+      {movieDetails && (
         <ScrollView>
           <Image
             style={styles.image}
             resizeMode="stretch"
             source={
-              details.poster_path
-                ? {uri: `https://image.tmdb.org/t/p/w500${details.poster_path}`}
+              movieDetails.poster_path
+                ? {
+                    uri: `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`,
+                  }
                 : PlaceHolderImg
             }
           />
           <View style={styles.container}>
-            <Text style={styles.movieTitle}>{details.title}</Text>
-            {details.genres && (
+            <Text style={styles.movieTitle}>{movieDetails.title}</Text>
+            {movieDetails.genres && (
               <View>
-                {details.genres.map((genre, i) => {
+                {movieDetails.genres.map((genre, i) => {
                   return <Text key={i}>{genre.name}</Text>;
                 })}
               </View>
