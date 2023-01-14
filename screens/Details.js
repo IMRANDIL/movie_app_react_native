@@ -11,7 +11,7 @@ import {
 import {getMovieDetails} from '../services/services';
 import {Rating} from 'react-native-ratings';
 const PlaceHolderImg = require('../assets/images/No-Image-Placeholder.svg.png');
-
+import dateFormat from 'dateformat';
 const height = Dimensions.get('screen').height;
 
 const Details = ({route}) => {
@@ -73,10 +73,10 @@ const Details = ({route}) => {
               style={styles.star}
             />
             <Text style={styles.overview}>{movieDetails.overview}</Text>
-            <Text
-              style={
-                styles.releasedate
-              }>{`Release date: ${movieDetails.release_date}`}</Text>
+            <Text style={styles.releasedate}>{`Release date: ${dateFormat(
+              movieDetails.release_date,
+              'mmmm dS, yyyy',
+            )}`}</Text>
           </View>
         </ScrollView>
       )}
