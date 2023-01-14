@@ -1,7 +1,12 @@
 import React from 'react';
+import {Text} from 'react-native';
 
 const Details = () => {
-  return <div>Details</div>;
+  return (
+    <>
+      <Text>{'Movie Details'}</Text>
+    </>
+  );
 };
 
 export default Details;

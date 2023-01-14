@@ -4,9 +4,12 @@ const PlaceHolderImg = require('../assets/images/No-Image-Placeholder.svg.png');
 
 class Card extends React.PureComponent {
   render() {
-    const {item} = this.props;
+    const {item, navigation} = this.props;
+
     return (
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Details')}
+        style={styles.container}>
         <Image
           style={styles.image}
           resizeMode="cover"
