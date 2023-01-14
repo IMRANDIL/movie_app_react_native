@@ -12,6 +12,7 @@ import {getMovieDetails} from '../services/services';
 import {Rating} from 'react-native-ratings';
 const PlaceHolderImg = require('../assets/images/No-Image-Placeholder.svg.png');
 import dateFormat from 'dateformat';
+import PlayButton from '../components/PlayButton';
 const height = Dimensions.get('screen').height;
 
 const Details = ({route}) => {
@@ -51,6 +52,9 @@ const Details = ({route}) => {
             }
           />
           <View style={styles.container}>
+            <View>
+              <PlayButton />
+            </View>
             <Text style={styles.movieTitle}>{movieDetails.title}</Text>
             {movieDetails.genres && (
               <View style={styles.generesContainer}>
