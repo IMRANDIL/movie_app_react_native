@@ -52,7 +52,7 @@ const Details = ({route}) => {
             }
           />
           <View style={styles.container}>
-            <View>
+            <View style={styles.playButton}>
               <PlayButton />
             </View>
             <Text style={styles.movieTitle}>{movieDetails.title}</Text>
@@ -124,5 +124,10 @@ const styles = StyleSheet.create({
   releasedate: {
     fontWeight: 'bold',
     marginBottom: 15,
+  },
+  playButton: {
+    position: 'absolute',
+    top: -30,
+    right: 20,
   },
 });
