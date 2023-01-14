@@ -49,6 +49,13 @@ const Details = ({route}) => {
           />
           <View style={styles.container}>
             <Text style={styles.movieTitle}>{details.title}</Text>
+            {details.genres && (
+              <View>
+                {details.genres.map((genre, i) => {
+                  return <Text key={i}>{genre.name}</Text>;
+                })}
+              </View>
+            )}
           </View>
         </ScrollView>
       )}
