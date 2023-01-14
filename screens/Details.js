@@ -13,8 +13,7 @@ const PlaceHolderImg = require('../assets/images/No-Image-Placeholder.svg.png');
 const height = Dimensions.get('screen').height;
 
 const Details = ({route}) => {
-  const {movieDetail} = route.params;
-  const movieId = movieDetail.id;
+  const {movieId} = route.params;
   const [details, setDetails] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,14 +32,14 @@ const Details = ({route}) => {
 
   return (
     <>
-      {!movieDetail && isLoading && (
+      {!movieId && isLoading && (
         <ActivityIndicator size="large" color="#0000ff" />
       )}
       {details && (
         <ScrollView>
           <Image
             style={styles.image}
-            resizeMode="cover"
+            resizeMode="stretch"
             source={
               details.poster_path
                 ? {uri: `https://image.tmdb.org/t/p/w500${details.poster_path}`}
