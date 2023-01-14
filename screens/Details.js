@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import VideoPlayer from 'react-native-video-controls';
 import {
   Text,
   ActivityIndicator,
@@ -17,7 +18,7 @@ import dateFormat from 'dateformat';
 import PlayButton from '../components/PlayButton';
 const height = Dimensions.get('screen').height;
 
-const Details = ({route}) => {
+const Details = ({route, navigation}) => {
   const {movieId} = route.params;
   const [movieDetails, setMovieDetails] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -93,9 +94,15 @@ const Details = ({route}) => {
           </ScrollView>
           <Modal animationType="slide" visible={modalVisible}>
             <View style={styles.videoModal}>
-              <Pressable onPress={() => videoShown()}>
+              <VideoPlayer
+                onBack={() => videoShown()}
+                navigator={navigation}
+                source={{uri: 'https://vjs.zencdn.net/v/oceans.mp4'}}
+              />
+
+              {/* <Pressable onPress={() => videoShown()}>
                 <Text>Close</Text>
-              </Pressable>
+              </Pressable> */}
             </View>
           </Modal>
         </View>
