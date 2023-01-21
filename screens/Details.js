@@ -95,7 +95,7 @@ const Details = ({route, navigation}) => {
           </ScrollView>
           <Modal animationType="slide" visible={modalVisible}>
             <View style={styles.videoModal}>
-              <Video videoShown={videoShown} navigation={navigation} />
+              <Video videoShown={videoShown} />
 
               {/* <Pressable onPress={() => videoShown()}>
                 <Text>Close</Text>

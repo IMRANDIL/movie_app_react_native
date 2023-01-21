@@ -1,11 +1,10 @@
 import React from 'react';
 import VideoPlayer from 'react-native-video-controls';
 
-const Video = ({videoShown, navigation}) => {
+const Video = ({videoShown}) => {
   return (
     <VideoPlayer
       onBack={() => videoShown()}
-      navigator={navigation}
       source={{uri: 'https://vjs.zencdn.net/v/oceans.mp4'}}
     />
   );
